@@ -1,12 +1,19 @@
 package com.example.Galaxy.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,18 +32,29 @@ public class Planets implements Serializable {
 	private Double diameter;
 	private String imgUrl;
 	
+	@JsonIgnore
+	@ManyToOne
+    @JoinColumn(name = "galaxy_system_id", nullable = false)
+    private GalaxySystem system;
+	
+
 	public Planets() {
 		
 	}
 
-	public Planets(Long id, String name, String type, Double diameter, String imgUrl) {
+
+
+	public Planets(Long id, String name, String type, Double diameter, String imgUrl, GalaxySystem system) {
 		super();
 		Id = id;
 		this.name = name;
 		this.type = type;
 		this.diameter = diameter;
 		this.imgUrl = imgUrl;
+		this.system = system;
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -93,6 +111,14 @@ public class Planets implements Serializable {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public GalaxySystem getSystem() {
+		return system;
+	}
+
+	public void setSystem(GalaxySystem system) {
+		this.system = system;
 	}
 	
 	
