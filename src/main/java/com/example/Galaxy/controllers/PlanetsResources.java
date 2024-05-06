@@ -32,4 +32,13 @@ public class PlanetsResources  {
 		
 	}
 	
+	@GetMapping("/name/{name}")
+	public ResponseEntity<Planets> getByName(@PathVariable String name){
+		Planets planets = serv.findByName(name);
+		return ResponseEntity.ok().body(planets);
+		
+	}
+	
+
+	
 }

@@ -23,4 +23,9 @@ public class PlanetServices{
 		Optional<Planets> planets = planetsRepo.findById(id);
 		return planets.orElse(null);
 	}
+	
+	public Planets findByName(String name) {
+		Optional<Planets> planets = planetsRepo.findByName(name);
+		return planets.orElse(null);
+	}
 }

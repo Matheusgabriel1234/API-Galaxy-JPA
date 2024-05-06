@@ -24,5 +24,12 @@ public class GalaxySystemServices {
 		return galaxySystem.orElse(null);
 		
 	}
+	
+	public GalaxySystem getByName(String name) {
+		Optional<GalaxySystem> system = gsRepo.getByName(name);
+		return system.orElse(null);
+	}
+	
+	 
 
 }

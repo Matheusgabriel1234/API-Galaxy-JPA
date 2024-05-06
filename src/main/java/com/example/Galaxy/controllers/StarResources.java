@@ -31,5 +31,11 @@ public class StarResources {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@GetMapping("/name/{name}")
+	public ResponseEntity<Stars> getByName(@PathVariable String name){
+		Stars obj = serv.getByName(name);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	
 }

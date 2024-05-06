@@ -1,6 +1,7 @@
 package com.example.Galaxy.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,10 +28,10 @@ public class GalaxySystem implements Serializable{
 		private String distance;
 		
 		@OneToMany(mappedBy = "system", cascade = CascadeType.ALL, orphanRemoval = true)
-	    private Set<Stars> estrelas = new HashSet<>();
+	    private List<Stars> estrelas = new ArrayList<>();
 		
 		@OneToMany(mappedBy = "system", cascade = CascadeType.ALL, orphanRemoval = true)
-	    private Set<Planets> planetas = new HashSet<>();
+	    private List<Planets> planetas = new ArrayList<>();
 		
 		
 		
@@ -81,30 +82,34 @@ public class GalaxySystem implements Serializable{
 
 
 
-		public Set<Stars> getEstrelas() {
+		public List<Stars> getEstrelas() {
 			return estrelas;
 		}
 
 
 
 
-		public void setEstrelas(Set<Stars> estrelas) {
+		public void setEstrelas(List<Stars> estrelas) {
 			this.estrelas = estrelas;
 		}
 
 
 
 
-		public Set<Planets> getPlanetas() {
+		public List<Planets> getPlanetas() {
 			return planetas;
 		}
 
 
 
 
-		public void setPlanetas(Set<Planets> planetas) {
+		public void setPlanetas(List<Planets> planetas) {
 			this.planetas = planetas;
 		}
+
+
+           
+
 
 
         
