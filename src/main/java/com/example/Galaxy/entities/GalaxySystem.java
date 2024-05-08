@@ -6,11 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -33,6 +37,11 @@ public class GalaxySystem implements Serializable{
 		@OneToMany(mappedBy = "system", cascade = CascadeType.ALL, orphanRemoval = true)
 	    private List<Planets> planetas = new ArrayList<>();
 		
+		@JsonIgnore
+		@ManyToOne
+	    @JoinColumn(name = "galaxy_id", nullable = false)
+		private Galaxy galaxy;
+		
 		
 		
 		public GalaxySystem() {
@@ -41,21 +50,21 @@ public class GalaxySystem implements Serializable{
 
 		
 		
+	
 		
-		public GalaxySystem(Long id, String name, String distance) {
+		public GalaxySystem(Long id, String name, String distance, Galaxy galaxy) {
 			super();
 			this.id = id;
 			this.name = name;
 			this.distance = distance;
+			this.galaxy = galaxy;
 		}
 
 
 
 
 
-
-
-	public Long getId() {
+		public Long getId() {
 			return id;
 		}
 
